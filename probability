@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+while (true); do
 read -p "First score: " fscore
 read -p "Second score: " sscore
 	
@@ -51,3 +51,4 @@ ans=$(echo "(${sprob}*${fprob})*100" |bc)
 pc="%";
 
 echo ${ans}${pc};
+done;
