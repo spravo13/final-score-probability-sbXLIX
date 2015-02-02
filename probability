@@ -1,55 +1,44 @@
 #!/usr/bin/env bash
 while (true); do
-	
 	read -p "First score: " fscore
 	read -p "Second score: " sscore
-	
-	case "$fscore" in
-		0)
-			fprob=.1604 ;;
-		1)
-			fprob=.0943 ;;
-		2)
-			fprob=.0236 ;;
-		3)
-			fprob=.0849 ;;
-		4)
-			fprob=.1651 ;;
-		5)
-			fprob=.0236 ;;
-		6)
-			fprob=.0849 ;;
-		7)
-			fprob=.2358 ;;
-		8)
-			fprob=.0708 ;;
-		9)
-			fprob=.0566 ;;
-	esac;
-	case "$sscore" in
-		0)
-			sprob=.1604 ;;
-		1)
-			sprob=.0943 ;;
-		2)
-			sprob=.0236 ;;
-		3)
-			sprob=.0849 ;;
-		4)
-			sprob=.1651 ;;
-		5)
-			sprob=.0236 ;;
-		6)
-			sprob=.0849 ;;
-		7)
-			sprob=.2358 ;;
-		8)
-			sprob=.0708 ;;
-		9)
-			sprob=.0566;;
-	esac;
+	scores=( "\$fscore" "\$sscore" )
+	for number in "${scores[@]}"; do
+		if [ "$number" == "\$fscore" ]; then
+			var=$fscore;
+		elif [ "$number" == "\$sscore" ]; then
+			var=$sscore;
+		fi
+		case $var in
+			0)
+				prob=.1604;; 
+			1)
+				prob=.0943 ;;
+			2)
+				prob=.0236 ;;
+			3)
+				prob=.0849 ;;
+			4)
+				prob=.1651 ;;
+			5)
+				prob=.0236 ;;
+			6)
+				prob=.0849 ;;
+			7)
+				prob=.2358 ;;
+			8)
+				prob=.0708 ;;
+			9)
+				prob=.0566 ;;
+			*)
+				echo $number
+		esac;
+		if [ "$number" == "\$fscore" ]; then
+			fprob=$prob;
+		elif [ "$number" == "\$sscore" ]; then
+			sprob=$prob;
+		fi
+	done;
 	ans=$(echo "(${sprob}*${fprob})*100" |bc)
-	pc="%";
-
-	echo ${ans}${pc};
+	echo ${ans}%;
 done;
